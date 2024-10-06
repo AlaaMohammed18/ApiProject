@@ -3,12 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using Store.Repository.Specifications.ProductSpecs;
 using Store.Services.Services.ProductServices;
 using Store.Services.Services.ProductServices.Dto;
+using Store.Web.Helper;
 
 namespace Store.Web.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class ProductsController : BaseController
     {
         private readonly IProductServices _productServices;
 
@@ -26,6 +27,7 @@ namespace Store.Web.Controllers
             => Ok(await _productServices.GetAllTypesAsync());
 
         [HttpGet]
+        [Cache(30)]
         public async Task<ActionResult<IReadOnlyList<ProductDetailsDto>>> GetAllProducts( [FromQuery] ProductSpecifications input)
            => Ok(await _productServices.GetAllProductsAsync(input));
 
