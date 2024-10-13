@@ -71,8 +71,6 @@ namespace Store.Services.Services.OrderServices
                 throw new Exception("Delivery Method Not Provided");
 
 
-
-
             #endregion
 
             #region Calculate Subtotal
